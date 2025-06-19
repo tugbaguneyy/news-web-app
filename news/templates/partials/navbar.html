@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container d-flex align-items-center">
+    <a class="navbar-brand me-4" href="{% url 'news:index' %}">
+      📰 Web Haber
+    </a>
+
+
+    <!-- Navbar’da kategori filtresi -->
+<div class="d-flex flex-wrap gap-2 ms-3">
+  <a href="{% url 'news:index' %}" 
+     class="btn category-filter {% if not current_category %}active{% endif %}">
+    Tümü
+  </a>
+  {% for category in categories_with_names %}
+    <a href="{% url 'news:index' %}?category={{ category.key }}" 
+       class="btn category-filter {% if current_category == category.key %}active{% endif %}">
+      {{ category.name }}
+    </a>
+  {% endfor %}
+</div>
+
+
+    
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a href="#" id="searchToggle" class="text-white me-3" title="Ara" style="font-size: 1.3rem;">
+      <button type="button" class="btn btn-outline-light">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search-heart-fill" viewBox="0 0 16 16">
+            <path d="M6.5 13a6.47 6.47 0 0 0 3.845-1.258h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1A6.47 6.47 0 0 0 13 6.5 6.5 6.5 0 0 0 6.5 0a6.5 6.5 0 1 0 0 13m0-8.518c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018"></path>
+            </svg>
+                Ara
+        </button>
+    </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Arama formu - başlangıçta gizli -->
+    <form method="GET" action="{% url 'news:search' %}" id="navbarSearchForm" class="d-none ms-auto" autocomplete="off" style="max-width: 300px; min-width: 200px;">
+      <div class="input-group input-group-sm">
+        <input type="text" name="q" class="form-control navbar-search-input" placeholder="Search here..." value="{{ search_query|default:'' }}" aria-label="Search">
+        <button class="btn btn-outline-light" type="button" id="searchCloseBtn" title="Kapat">&times;</button>
+      </div>
+    </form>
+  </div>
+</nav>
