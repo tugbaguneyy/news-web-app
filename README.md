@@ -126,3 +126,11 @@ python manage.py runserver
 ```
 
 ---
+## 📸 Screenshots
+
+<table>
+  <tr>
+    <td><img src="web-haber-screenshot1.png" /></td>
+     <td><img src="web-haber-screenshot2.png"/></td>
+  </tr>
+</table>
